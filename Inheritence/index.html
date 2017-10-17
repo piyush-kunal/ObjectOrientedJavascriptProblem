@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+    //Employee will the base object (parent)
+      var Employee = function (name) {
+        this.name = name;
+      };
+      //getName function added to parent function
+      Employee.prototype.getName = function () {
+        return this.name;
+      };
+
+      Employee.prototype.getNameLength = function () {
+        return this.name.length;
+      };
+
+      //Parmanent Employee will be the derived object (Child)
+      var ParmanentEmployee = function (annualSalary) {
+        this.annualSalary = annualSalary;
+      }
+
+      //Use prototype to associate Employee as parent Object for permanent employeee
+      ParmanentEmployee.prototype = new Employee("Mark");
+      var pe = new ParmanentEmployee(50000);
+
+      document.write(pe.getName()+"<br/>");
+      document.write(pe.getNameLength()+"<br/>");
+
+      var employeee = new Employee("Mika");
+      document.write("employeee.name : " +employeee.hasOwnProperty('name') + "<br/>");
+        document.write("employeee.annualSalary : "+ employeee.hasOwnProperty('annualSalary') + "<br/>");
+          document.write("pe.annualSalary : "+ pe.hasOwnProperty('annualSalary') + "<br/>");
+      // alert(pe instanceof Employee);
+      // alert(pe instanceof ParmanentEmployee);
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

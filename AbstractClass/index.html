@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+    //To achive polymorphism
+    //Create Base object which abstract
+    var Shape = function(){
+      this.shapeName = "none";
+      throw new Error("Cannot create an instance of an abstract class");
+    }
+
+    //Error : Cannot create an instance of an abstract class
+    // var shape = new Shape();
+
+    //Add draw function to the shape prototype
+    //Object derived from shape should be able to call draw() method
+    Shape.prototype.draw = function () {
+      return "Drawing " + this.shapeName;
+    };
+
+    //Create a circle object
+    var Circle = function(shapeName){
+      this.shapeName = shapeName;
+    }
+
+    //Make shape the parent for circle
+    //Object.create allows to create an abject without using constructor
+    Circle.prototype = Object.create(Shape.prototype);
+
+    var circle = new Circle("Circle");
+    // Since Circle inherits from abstract shape object, it call draw() method
+      document.write(circle.draw());
+      alert(circle instanceof Circle);
+      alert(circle instanceof Shape);
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

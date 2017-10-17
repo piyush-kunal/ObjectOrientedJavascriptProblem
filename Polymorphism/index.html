@@ -1,0 +1,34 @@
+<script type="text/javascript">
+//To achive polymorphism
+//Shape object is the base object
+var Shape = function(){};
+
+//Add draw function to the shape prototype
+//Object derived from shape should be able to override draw() method
+Shape.prototype.draw = function () {
+  return "I am a generic shape";
+};
+
+var Square = function () {};
+Square.prototype = Object.create(Shape.prototype);
+Square.prototype.draw = function () {
+  return "I am a Square";
+}
+
+//Create a circle object
+var Circle = function(shapeName){};
+Circle.prototype = Object.create(Shape.prototype);
+Circle.prototype.draw = function () {
+  return "I am a Circle";
+}
+
+var Triangle = function(shapeName){};
+Triangle.prototype = Object.create(Shape.prototype);
+
+//Client code
+var shapes = [new Shape(), new Circle(), new Square(), new Triangle()];
+
+shapes.forEach(function (val){
+  document.write(val.draw()+"</br>");
+});
+</script>

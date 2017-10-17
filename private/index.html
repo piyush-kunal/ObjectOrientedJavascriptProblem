@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      function Employee(firstName, lastName){
+        //public field
+        this.firstName = firstName;
+        this.lastName = lastName;
+        //private field
+        var privateFullName;
+        //private function
+        var privateGetFullName = function() {
+          privateFullName = firstName + " " +lastName;
+          return privateFullName;
+        }
+        //privilleged function
+        this.privillegedGetFullName = function () {
+          return privateGetFullName();
+        }
+        //public function
+        Employee.prototype.publicGetFullName = function () {
+          return this.privillegedGetFullName();
+        };
+      }
+
+      var employee = new Employee("piyush", "kunal");
+      document.write(employee.publicGetFullName() + "<br/>");
+      document.write(employee.privillegedGetFullName() + "<br/>");
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
